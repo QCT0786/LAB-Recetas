@@ -67,3 +67,22 @@ def receta_mas_barata(recetas: list[Receta], conj_tipos: set[str], n:int = None)
     resultado = min(lista_n, key = lambda receta: receta.precio)
         
     return resultado
+
+def total_recetas_por_tipo(recetas:list[Receta])->dict[str]:
+    dicc = dict()
+    for receta in recetas:
+        if receta.tipo not in dicc:
+            dicc[receta.tipo] = 1
+        else:
+            dicc[receta.tipo] += 1
+    return dicc
+
+def lista_de_recetas_por_ingredientes(recetas: list[Receta])->dict[str]:
+    dicc = dict(list[str])
+    for receta in recetas:
+        for ingrediente in receta.ingredientes:
+            if ingrediente.nombre not in dicc:
+                    dicc[ingrediente.nombre] = list(receta.denominacion)
+            else:
+                    dicc[ingrediente.nombre].append(receta.denominacion)
+    return dicc
