@@ -78,7 +78,7 @@ def total_recetas_por_tipo(recetas:list[Receta])->dict[str]:
     return dicc
 
 def lista_de_recetas_por_ingredientes(recetas: list[Receta])->dict[str]:
-    dicc = dict(list[str])
+    dicc = dict()
     for receta in recetas:
         for ingrediente in receta.ingredientes:
             if ingrediente.nombre not in dicc:
