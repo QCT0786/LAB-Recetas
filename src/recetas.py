@@ -35,10 +35,6 @@ def lee_recetas(ruta_archivo: str)->list[Receta]:
             lista.append(Receta(denominacion, tipo, dificultad, ingredientes, tiempo, calorias, fecha, precio))
         return lista
 
-
-
-
-
 def parsear_ingredientes(cadena: str)-> list[Ingrediente]:
     lista = []
     if len(cadena)>0:
@@ -54,3 +50,20 @@ def parsear_ingrediente(cadena2: str)-> Ingrediente:
     unidad = tupla[2]
 
     return Ingrediente(nombre, cantidad, unidad)
+
+def ingredientes_en_unidad(recetas: list[Receta], unidad = None):
+    pass
+
+def recetas_con_ingredientes(recetas:list[Receta], conj_ingredientes: set[str]) -> list[tuple[str, int, float]]:
+    pass
+
+def receta_mas_barata(recetas: list[Receta], conj_tipos: set[str], n:int = None) -> list[Receta]:
+    lista = []
+    for receta in recetas:
+        if receta.tipo in conj_tipos:
+            lista.append(receta)
+    lista_menor_a_mayor = sorted(lista, key = lambda receta : receta.calorias, reverse=True)
+    lista_n = lista_menor_a_mayor[:n]
+    resultado = min(lista_n, key = lambda receta: receta.precio)
+        
+    return resultado

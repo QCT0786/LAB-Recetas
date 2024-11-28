@@ -1,26 +1,14 @@
 from recetas import *
 
-def test_lee_recetas(ruta_archivo: str):
-    """
-    Función para probar la implementación de lee_recetas.
-    
-    Args:
-        ruta_archivo (str): Ruta del archivo CSV con las recetas.
-    """
-    try:
-        # Llamar a la función principal para leer las recetas
-        recetas = lee_recetas(ruta_archivo)
-        
-        # Mostrar los resultados obtenidos
-        print(f"Se han leído {len(recetas)} recetas del archivo '{ruta_archivo}':\n")
-        for receta in recetas:
-            print(receta)
-    except FileNotFoundError:
-        print(f"Error: No se encontró el archivo en la ruta especificada: {ruta_archivo}")
-    except ValueError as e:
-        print(f"Error de formato en el archivo: {e}")
-    except Exception as e:
-        print(f"Error inesperado: {e}")
+def lee_recetas_t(ruta_archivo: str)->list[Receta]:
+    print("Probando lee recetas")
+    lee_recetas(ruta_archivo)
+    return lee_recetas(ruta_archivo)
+
+def receta_mas_barata_test(recetas: list[Receta], conj_tipos: set[str], n:int = None):
+   print("Probando receta mas barata") 
+   receta_mas_barata(recetas, conj_tipos, n)
 
 if __name__ == "__main__":
-    test_lee_recetas("data//recetas.csv")
+    recetas = lee_recetas_t("LAB-Recetas//data//recetas.csv")
+    receta_mas_barata_test(recetas, {"Postre", "Entrante", 5})
